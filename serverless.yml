@@ -1,0 +1,34 @@
+service: aws-lambda-layer-npm-sharp
+frameworkVersion: "3"
+plugins:
+  - serverless-esbuild
+package:
+  individually: true
+provider:
+  name: aws
+  region: ap-southeast-2
+  runtime: nodejs16.x
+custom:
+  esbuild:
+    bundle: true
+    minify: false
+    sourcemap: true
+    exclude:
+      - aws-sdk
+      - sharp
+    packagerOptions:
+      scripts:
+        - npm install --arch=x64 --platform=linux sharp
+    target: node16
+    platform: node
+layers:
+  sharp:
+    name: ${sls:stage}-sharp-layer-TEST
+    description: Sharp nodejs imaging library as a layer
+    package:
+      artifact: ./layers/sharp/out/sharp-0.31.2-aws-lambda-linux-x64-node-16.17.0.zip
+    compatibleRuntimes:
+      - nodejs16.x
+    allowedAccounts:
+      - "*"
+    retain: false
