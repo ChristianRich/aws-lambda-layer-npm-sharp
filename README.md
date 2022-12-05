@@ -6,7 +6,7 @@ This repo was made to overcome an obstacle while integrating [npm sharp](https:/
 
 Sharp is a blazing fast and slick image processing library for Node. It's faster than any other library I have come across, and hence it is worth going through the extra installation trouble.
 
-Sharp uses different C++ binaries for different runtime environments which are resolved during the installation process. If you just copy the `node_modules` folder to AWS Lambda containing Sharp it will not work 😞
+Sharp uses different binaries for different runtime environments which are resolved during the installation process. If you just copy the `node_modules` folder to AWS Lambda containing Sharp it will not work 😞
 
 Another issue is that Sharp is a large library (file size wise) meaning subsequent deployments can be slow. In addition, some developers report installation trouble / confusion.
 
